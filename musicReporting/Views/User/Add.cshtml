@@ -1,0 +1,38 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Add User"; 
+}
+
+<h1>Add User</h1>
+<form asp-controller="User" asp-action="Add" method="post">
+    <div class="form-group row">
+        <label asp-for="User.FirstName" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="User.FirstName" class="col-md-5"/>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="User.LastName" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="User.LastName" class="col-md-5" />
+
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="User.UserName" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="User.UserName" class="col-md-5" />  
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="User.Email" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="User.Email" class="col-md-5" />
+        </div>
+        <input type="hidden" asp-for="User.FirstName"/>
+        <input type="hidden" asp-for="User.LastName"/>
+        <input type="hidden" asp-for="User.UserName"/>
+        <input type="hidden" asp-for="User.Email"/>
+
+        <button class="btn btn-primary" type="submit">Add User</button>
+    <a class="btn btn-secondary" asp-controller="User" asp-action="ViewAll">Cancel</a>
+</form>

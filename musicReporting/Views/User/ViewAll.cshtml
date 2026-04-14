@@ -14,5 +14,31 @@
     <body>
         This is my brief page holder
 
+        <a class="btn btn-outline-primary btn-sm" asp-controller="User" asp-action="Add">Add User</a>
+        <a class="btn btn-outline-primary btn-sm" asp-controller="User" asp-action="Edit"> Edit user</a>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="User" asp-action="ViewUser"> View user</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Users != null)
+            foreach(var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
     </body>
 </html>

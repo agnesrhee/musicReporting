@@ -1,6 +1,32 @@
-﻿namespace musicReporting.Models.Entities
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace musicReporting.Models.Entities
 {
     public class User
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DisplayName("Id")]
+        public int Id { get; set; }
+
+        [DisplayName("StoreId")]
+        public int StoreId { get; set; }
+
+        [DisplayName("UserId")]
+        public string UserId { get; set; } = string.Empty;
+
+        [DisplayName("UserName")]
+        public string UserName { get; set; } = string.Empty;
+
+        [DisplayName("Email")]
+        public string Email { get; set; } = string.Empty;
+
+        [DisplayName("FirstName")]
+        public string FirstName { get; set; } = string.Empty;
+
+        [DisplayName("LastName")]
+        public string LastName { get; set; } = string.Empty;
     }
 }

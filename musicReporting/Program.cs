@@ -1,8 +1,17 @@
+using System;
+using Microsoft.EntityFrameworkCore;
+using musicReporting.Models.Entities;
+using musicReporting.Models;
+using musicReporting.Models.Interfaces;
+using musicReporting.Models.Repositories;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
