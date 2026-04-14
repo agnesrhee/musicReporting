@@ -7,3 +7,18 @@
 }
 
 <h1>View User</h1>
+<input type="hidden" asp-for="User.Id" />
+
+<label asp-for="User.UserName"></label>
+<input class="form-control-sm" asp-for="User.UserName" disabled />
+
+<label asp-for="User.FirstName"></label>
+<input class="form-control-sm" asp-for="User.FirstName" disabled />
+
+<label asp-for="User.LastName"></label>
+<input class="form-control-sm" asp-for="User.LastName" disabled />
+
+<label asp-for="User.Email"></label>
+<input class="form-control-sm" asp-for="User.Email" disabled />
+
+<a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Return</a>

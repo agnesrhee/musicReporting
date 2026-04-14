@@ -7,3 +7,20 @@
 }
 
 <h1>Edit User</h1>
+
+<input type="hidden" asp-for="User.Id" />
+
+<label asp-for="User.UserName"></label>
+<input class="form-control-sm" asp-for="User.UserName"/>
+
+<label asp-for="User.FirstName"></label>
+<input class="form-control-sm" asp-for="User.FirstName"/>
+
+<label asp-for="User.LastName"></label>
+<input class="form-control-sm" asp-for="User.LastName"/>
+
+<label asp-for="User.Email"></label>
+<input class="form-control-sm" asp-for="User.Email"  />
+
+<button class="btn btn-outline-primary btn-sm" type="submit">Update</button> 
+<a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Cancel</a>

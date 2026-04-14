@@ -25,6 +25,7 @@ namespace musicReporting.Controllers
         public IActionResult ViewUser(int id)
         {
             UserViewModel model = new UserViewModel();
+            model.User = _userRepository.Get(id);
             return View(model);
         }
 
@@ -42,7 +43,7 @@ namespace musicReporting.Controllers
             {
                 // Map UserViewModel to User entity and add to repository
                 var user = new User {
-                    UserId = DateTime.Now.Millisecond.ToString(),
+                    UserId = DateTime.Now.Ticks.ToString(),
                     FirstName = model.User?.FirstName,
                     LastName = model.User?.LastName,
                     UserName = model.User?.UserName,
@@ -58,6 +59,8 @@ namespace musicReporting.Controllers
         public IActionResult Edit(int id)
         {
             UserViewModel model = new UserViewModel();
+            model.User = _userRepository.Get(id);
+            
             return View(model);
         }
 
