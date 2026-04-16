@@ -1,0 +1,57 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model StoreViewModel
+
+@{
+    ViewBag.Title = "Add Store";
+}
+
+<h1>Add Store</h1>
+<form asp-controller="Store" asp-action="Add" method="post">
+    <div class="form-group row">
+        <label asp-for="Store.StoreName" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.StoreName" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Store.PhoneNumber" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.PhoneNumber" />
+
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Store.AddressLine1" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.AddressLine1" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Store.AddressLine2" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.AddressLine2"/>
+    </div>
+
+    <div class="form-group row">
+       <label asp-for="Store.City" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.City"/>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Store.State" class="col-sm-2 col-form-lavel"></label>
+        <input class="form-control-sm" asp-for="Store.State" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Store.ZipCode" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Store.ZipCode" />
+
+        </div>
+    <input type="hidden" asp-for="Store.StoreName" />
+    <input type="hidden" asp-for="Store.AddressLine1" />
+    <input type="hidden" asp-for="Store.AddressLine2" />
+    <input type="hidden" asp-for="Store.PhoneNumber" />
+    <input type="hidden" asp-for="Store.City" />
+    <input type="hidden" asp-for="Store.State" />
+    <input type="hidden" asp-for="Store.ZipCode" />
+
+    <button class="btn btn-primary" type="submit">Add Store</button>
+    <a class="btn btn-secondary" asp-controller="Store" asp-action="ViewAll">Cancel</a>
+</form>

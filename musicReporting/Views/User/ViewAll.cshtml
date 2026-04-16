@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Store name</th>
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -26,10 +27,12 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model.Users.Count() > 0){
+            @if ((Model.Users != null && Model.Users.Any()))
+            {
             foreach(var user in Model.Users)
             {
                 <tr>
+                    <td>@user.Store?.StoreName</td>
                     <td>@user.FirstName @user.LastName</td>
                     <td>@user.UserName</td>
                     <td>@user.Email</td>
@@ -45,7 +48,9 @@
 
                 else
                 {
-                <tr>No users!</tr>
+                <tr>
+                    <td colspan="5">No users!</td>
+                </tr>
                 }
             </tbody>
     </table>

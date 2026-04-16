@@ -1,0 +1,59 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model StoreViewModel
+
+@{
+    ViewBag.Title = "View All Stores";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="Add">Add new </a>
+        
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Stores != null && Model.Stores.Any()))
+            {
+                foreach (var store in Model.Stores)
+                {
+                    <tr>
+                        <td>@store.StoreName</td>
+                        <td>@store.PhoneNumber</td>
+                        <td>@store.AddressLine1 @store.AddressLine2, @store.City, @store.State @store.ZipCode</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id"> Edit store</a>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="ViewStore" asp-route-id="@store.Id"> View store</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id"> Delete store</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No stores!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>

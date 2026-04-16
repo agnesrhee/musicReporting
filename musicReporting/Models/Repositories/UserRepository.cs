@@ -1,4 +1,5 @@
-﻿using musicReporting.Models.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using musicReporting.Models.Entities;
 using musicReporting.Models.Interfaces;
 
 namespace musicReporting.Models.Repositories
@@ -14,7 +15,9 @@ namespace musicReporting.Models.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            return _db.Users.ToList();
+            return _db.Users
+            .Include(u => u.Store)
+            .ToList();
         }
 
         public User? Get(int id)

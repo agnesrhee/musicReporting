@@ -8,25 +8,35 @@
 
 <h1>Add User</h1>
 <form asp-controller="User" asp-action="Add" method="post">
+
+    <div class="form-group row">
+        <label asp-for="Stores" class="col col-form-label"></label>
+        <select asp-for="User.StoreId" asp-items="Model.Stores">
+            <option value="">Select a store</option>
+            
+        </select>
+    </div>
+
+    <input type="hidden" asp-for="User.StoreId" />
     <div class="form-group row">
         <label asp-for="User.FirstName" class="col-sm-2 col-form-label"></label>
-        <input class="form-control-sm" asp-for="User.FirstName" class="col-md-5"/>
+        <input class="form-control-sm" asp-for="User.FirstName"/>
     </div>
 
     <div class="form-group row">
         <label asp-for="User.LastName" class="col-sm-2 col-form-label"></label>
-        <input class="form-control-sm" asp-for="User.LastName" class="col-md-5" />
+        <input class="form-control-sm" asp-for="User.LastName"/>
 
     </div>
 
     <div class="form-group row">
         <label asp-for="User.UserName" class="col-sm-2 col-form-label"></label>
-        <input class="form-control-sm" asp-for="User.UserName" class="col-md-5" />  
+        <input class="form-control-sm" asp-for="User.UserName"/>  
     </div>
 
     <div class="form-group row">
         <label asp-for="User.Email" class="col-sm-2 col-form-label"></label>
-        <input class="form-control-sm" asp-for="User.Email" class="col-md-5" />
+        <input class="form-control-sm" asp-for="User.Email" />
         </div>
         <input type="hidden" asp-for="User.FirstName"/>
         <input type="hidden" asp-for="User.LastName"/>
