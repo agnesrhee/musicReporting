@@ -12,7 +12,9 @@ namespace musicReporting.Models.Entities
         public int Id { get; set; }
 
         [DisplayName("StoreId")]
-        public int StoreId { get; set; }
+        public int? StoreId { get; set; }
+
+        public Store? Store { get; set; }
 
         [DisplayName("UserId")]
         public string UserId { get; set; } = string.Empty;

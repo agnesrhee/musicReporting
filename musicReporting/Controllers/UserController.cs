@@ -70,8 +70,15 @@ namespace musicReporting.Controllers
             if (ModelState.IsValid)
             {
                 // Map UserViewModel to User entity and update in repository
-                // var user = new User { ... };
-                // _userRepository.Update(user);
+                var user = new User {
+                    Id = model.User.Id,
+                    UserId = model.User.UserId,
+                    FirstName = model.User.FirstName,
+                    LastName = model.User.LastName,
+                    UserName = model.User.UserName,
+                    Email = model.User.Email
+                };
+                _userRepository.Update(user);
                 return RedirectToAction("ViewAll");
             }
             return View(model);

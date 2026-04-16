@@ -7,8 +7,9 @@
 }
 
 <h1>Edit User</h1>
-
+<form asp-controller="User" asp-action="Edit" method="post">
 <input type="hidden" asp-for="User.Id" />
+<input type="hidden" asp-for="User.UserId" />
 
 <label asp-for="User.UserName"></label>
 <input class="form-control-sm" asp-for="User.UserName"/>
@@ -24,3 +25,4 @@
 
 <button class="btn btn-outline-primary btn-sm" type="submit">Update</button> 
 <a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Cancel</a>
+</form>
