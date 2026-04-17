@@ -1,0 +1,29 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model CategoryViewModel
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+
+<h1>Edit Category</h1>
+<form asp-controller="Category" asp-action="Edit" method="post">
+    <div class="form-group row">
+        <label asp-for="Category.Name" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Category.Name" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Category.Description" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Category.Description" />
+
+    </div>
+
+    <input type="hidden" asp-for="Category.Id" />
+    <input type="hidden" asp-for="Category.Name" />
+    <input type="hidden" asp-for="Category.Description" />
+
+
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-secondary" asp-controller="Category" asp-action="ViewAll">Cancel</a>
+</form>

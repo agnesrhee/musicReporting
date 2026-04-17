@@ -1,0 +1,56 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model CategoryViewModel
+
+@{
+    ViewBag.Title = "View All Categories";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Category" asp-action="Add">Add new </a>
+        
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Categories != null && Model.Categories.Any()))
+            {
+                foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Name</td>
+                        <td>@category.Description</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id"> Edit category</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id"> Delete category</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No categories!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>

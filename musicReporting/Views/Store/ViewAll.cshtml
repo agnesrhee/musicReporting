@@ -36,7 +36,6 @@
                         <td>@store.AddressLine1 @store.AddressLine2, @store.City, @store.State @store.ZipCode</td>
                         <td>
                             <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id"> Edit store</a>
-                            <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="ViewStore" asp-route-id="@store.Id"> View store</a>
                             <a class="btn btn-outline-danger btn-sm" asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id"> Delete store</a>
                         </td>
                     </tr>
