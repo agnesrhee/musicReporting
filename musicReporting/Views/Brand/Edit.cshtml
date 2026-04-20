@@ -1,0 +1,29 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model BrandViewModel
+
+@{
+    ViewBag.Title = "Edit Brand";
+}
+
+<h1>Edit Brand</h1>
+<form asp-controller="Brand" asp-action="Edit" method="post">
+    <div class="form-group row">
+        <label asp-for="Brand.Name" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Brand.Name" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Brand.Description" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Brand.Description" />
+
+    </div>
+
+    <input type="hidden" asp-for="Brand.Id" />
+    <input type="hidden" asp-for="Brand.Name" />
+    <input type="hidden" asp-for="Brand.Description" />
+
+
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-secondary" asp-controller="Brand" asp-action="ViewAll">Cancel</a>
+</form>

@@ -1,0 +1,56 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model BrandViewModel
+
+@{
+    ViewBag.Title = "View All Brands";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Brand" asp-action="Add">Add new </a>
+
+        
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Brands != null && Model.Brands.Any()))
+            {
+                foreach (var brand in Model.Brands)
+                {
+                    <tr>
+                        <td>@brand.Name</td>
+                        <td>@brand.Description</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Brand" asp-action="Edit" asp-route-id="@brand.Id"> Edit brand</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Brand" asp-action="Delete" asp-route-id="@brand.Id"> Delete brand</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No brands!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model ItemViewModel
+
+@{
+    ViewBag.Title = "Edit Item";
+}
+
+<h1>Edit Item</h1>
+<form asp-controller="Item" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Item.ItemName" />
+    <div class="form-group row">
+        <label asp-for="Item.ItemName" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Item.ItemName" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Item.Description" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Item.Description" />
+
+    </div>
+
+
+    <div class="form-group row">
+        <label asp-for="Categories" class="col col-form-label"></label>
+        <select asp-for="Item.CategoryId" asp-items="Model.Categories">
+            <option value="">Select a category</option>
+            
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Brands" class="col col-form-label"></label>
+        <select asp-for="Item.BrandId" asp-items="Model.Brands">
+            <option value="">Select a brand</option>
+            
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Item.Price" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Item.Price" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Item.SKU" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Item.SKU" />
+    </div>
+
+    <input type="hidden" asp-for="Item.Id" />
+    <input type="hidden" asp-for="Item.ItemName" />
+    <input type="hidden" asp-for="Item.Description" />
+    <input type="hidden" asp-for="Item.CategoryId" />
+    <input type="hidden" asp-for="Item.Price" />
+    <input type="hidden" asp-for="Item.SKU" />
+
+
+    <button class="btn btn-outline-primary btn-sm" type="submit">Update</button>
+    <a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Cancel</a>
+</form>

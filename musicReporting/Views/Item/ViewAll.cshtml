@@ -1,0 +1,64 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model ItemViewModel
+
+@{
+    ViewBag.Title = "View All Items";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Item" asp-action="Add">Add new </a>
+        
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>SKU</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Items != null && Model.Items.Any()))
+            {
+                foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.Description</td>
+                        <td>@item.Category?.Name</td>
+                        <td>@item.Brand?.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.SKU</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id"> Edit item</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id"> Delete item</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No items!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>
