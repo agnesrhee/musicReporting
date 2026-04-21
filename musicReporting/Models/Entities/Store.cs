@@ -37,6 +37,7 @@ namespace musicReporting.Models.Entities
 
 
         public ICollection<User> Users { get; set; } = new List<User>();
+        public ICollection<StoreInventory> StoreInventories { get; set; } = new List<StoreInventory>();
 
     }
 }

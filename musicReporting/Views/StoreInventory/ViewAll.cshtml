@@ -1,0 +1,58 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model StoreInventoryViewModel
+
+@{
+    ViewBag.Title = "View All Store Inventory";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="StoreInventory" asp-action="Add">Add Store Inventory</a>
+
+        
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Store name</th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.StoreInventories != null && Model.StoreInventories.Any()))
+            {
+                foreach (var storeInventory in Model.StoreInventories)
+                {
+                    <tr>
+                        <td>@storeInventory.Store?.StoreName</td>
+                        <td>@storeInventory.Item?.ItemName</td>
+                        <td>@storeInventory.QuantityOnHand</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="StoreInventory" asp-action="Edit" asp-route-id="@storeInventory.Id"> Edit</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="StoreInventory" asp-action="Delete" asp-route-id="@storeInventory.Id"> Delete</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No store inventory!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>

@@ -36,6 +36,7 @@ namespace musicReporting.Models.Entities
         [DisplayName("Is Active")]
         public bool IsActive { get; set; } = true;
 
+        public ICollection<StoreInventory> StoreInventories { get; set; } = new List<StoreInventory>();
     }
 
 }

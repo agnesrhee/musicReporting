@@ -17,5 +17,6 @@ namespace musicReporting.Models
         public DbSet<Category> Categories { get; set; } 
         public DbSet<Item> Items { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<StoreInventory> Inventories { get; set; }
     }
 }

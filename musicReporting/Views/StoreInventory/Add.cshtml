@@ -1,0 +1,35 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model StoreInventoryViewModel
+
+@{
+    ViewBag.Title = "Add Store Inventory";
+}
+
+<h1>Add Store Inventory</h1>
+<form asp-controller="StoreInventory" asp-action="Add" method="post">
+    <div class="form-group row">
+        <label asp-for="Stores" class="col col-form-label"></label>
+        <select asp-for="StoreInventory.StoreId" asp-items="Model.Stores">
+            <option value="">Select a store</option>
+            
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Items" class="col col-form-label"></label>
+        <select asp-for="StoreInventory.ItemId" asp-items="Model.Items">
+            <option value="">Select an item</option>
+            
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="StoreInventory.QuantityOnHand" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="StoreInventory.QuantityOnHand" />
+
+
+    <button class="btn btn-primary" type="submit">Add Store Inventory</button>
+    <a class="btn btn-secondary" asp-controller="StoreInventory" asp-action="ViewAll">Cancel</a>
+</form>
+
