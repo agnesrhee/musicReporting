@@ -12,5 +12,6 @@ namespace musicReporting.Models.Interfaces
         StoreInventory Update(StoreInventory storeInventory);
         void Delete(int id);
         void Delete(StoreInventory storeInventory);
+        StoreInventory? GetByStoreAndItem(int storeId, int itemId);
     }
 }

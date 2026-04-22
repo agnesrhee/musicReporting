@@ -35,22 +35,25 @@ namespace musicReporting.Models.Repositories
             _db.SaveChanges();
             return storeInventory;
         }
+
+
         public StoreInventory Update(StoreInventory storeInventory)
         {
-            var existingSI = _db.Inventories.Find(storeInventory.Id);
-            if (existingSI == null)
+            var existingStoreInventory = _db.Inventories.Find(storeInventory.Id);
+            if (existingStoreInventory == null)
             {
                 throw new Exception($"StoreInventory with Id {storeInventory.Id} not found.");
             }
 
-            existingSI.Id = storeInventory.Id;
-            existingSI.StoreId = storeInventory.StoreId;
-            existingSI.ItemId = storeInventory.ItemId;
-            existingSI.QuantityOnHand = storeInventory.QuantityOnHand;
+            existingStoreInventory.StoreId = storeInventory.StoreId;
+            existingStoreInventory.ItemId = storeInventory.ItemId;
+            existingStoreInventory.QuantityOnHand = storeInventory.QuantityOnHand;
+            existingStoreInventory.IsActive = storeInventory.IsActive;
 
             _db.SaveChanges();
-            return existingSI;
+            return existingStoreInventory;
         }
+
         public void Delete(int id)
         {
                 var storeInventory = _db.Inventories.Find(id);
@@ -64,6 +67,12 @@ namespace musicReporting.Models.Repositories
         {
             _db.Inventories.Remove(storeInventory);
             _db.SaveChanges();
+        }
+
+        public StoreInventory? GetByStoreAndItem(int storeId, int itemId)
+        {
+            return _db.Inventories
+                .FirstOrDefault(si => si.StoreId == storeId && si.ItemId == itemId);
         }
     }
 }

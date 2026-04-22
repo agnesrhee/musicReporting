@@ -18,5 +18,7 @@ namespace musicReporting.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<StoreInventory> Inventories { get; set; }
-    }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SaleLineItem> SaleLineItems { get; set; }
+        }
 }

@@ -22,6 +22,7 @@
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Address</th>
+                <th>Employees</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
                         <td>@store.StoreName</td>
                         <td>@store.PhoneNumber</td>
                         <td>@store.AddressLine1 @store.AddressLine2, @store.City, @store.State @store.ZipCode</td>
+                        <td>@store.Users.Count()</td>
                         <td>
                             <a class="btn btn-outline-primary btn-sm" asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id"> Edit store</a>
                             <a class="btn btn-outline-danger btn-sm" asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id"> Delete store</a>

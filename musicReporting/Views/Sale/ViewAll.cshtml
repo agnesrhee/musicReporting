@@ -1,0 +1,51 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model SaleViewModel
+
+@{
+    ViewBag.Title = "View All Sales";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Sale" asp-action="Add">Add new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Store</th>
+                <th>Username</th>
+                <th>Sale Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Sales != null && Model.Sales.Any()))
+            {
+                foreach (var sale in Model.Sales)
+                {
+                    <tr>
+                        <td>@sale.Store?.StoreName</td>
+                        <td>@sale.User?.UserName</td>
+                        <td>@sale.SaleDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Sale" asp-action="ViewSale" asp-route-id="@sale.Id">View</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Sale" asp-action="Delete" asp-route-id="@sale.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No sales!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

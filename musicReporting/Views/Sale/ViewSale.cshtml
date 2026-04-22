@@ -1,0 +1,70 @@
+﻿@using musicReporting.ViewModels
+@model SaleViewModel
+
+@{
+    ViewBag.Title = "View Sale";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>View Sale</h1>
+
+    @if (Model.Sale != null)
+    {
+        <div>
+            <p><strong>Sale Id:</strong> @Model.Sale.Id</p>
+            <p><strong>Store:</strong> @Model.Sale.Store?.StoreName</p>
+            <p><strong>Username:</strong> @Model.Sale.User?.UserName</p>
+            <p><strong>Sale Date:</strong> @Model.Sale.SaleDate.ToString("MM/dd/yyyy hh:mm tt")</p>
+        </div>
+
+        <h3>Items</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Line Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Sale.LineItems != null && Model.Sale.LineItems.Any())
+                {
+                    foreach (var line in Model.Sale.LineItems)
+                    {
+                        <tr>
+                            <td>@line.Item?.ItemName</td>
+                            <td>@line.Quantity</td>
+                            <td>@line.UnitPrice.ToString("C")</td>
+                            <td>@((line.Quantity * line.UnitPrice).ToString("C"))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">No line items found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p>
+            <strong>Total:</strong>
+            @Model.Sale.LineItems.Sum(li => li.Quantity * li.UnitPrice).ToString("C")
+        </p>
+    }
+    else
+    {
+        <p>Sale not found.</p>
+    }
+
+    <a class="btn btn-secondary" asp-controller="Sale" asp-action="ViewAll">Back to Sales</a>
+</body>
+</html>

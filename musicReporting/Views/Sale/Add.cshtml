@@ -1,0 +1,44 @@
+﻿@using musicReporting.ViewModels
+@model SaleViewModel
+
+@{
+    ViewBag.Title = "Add Sale";
+}
+
+<h1>Add Sale</h1>
+
+<form asp-controller="Sale" asp-action="Add" method="post">
+    <div class="form-group row">
+        <label asp-for="StoreId" class="col-sm-2 col-form-label"></label>
+        <select asp-for="StoreId" asp-items="Model.Stores">
+            <option value="">Select a store</option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="UserId" class="col-sm-2 col-form-label"></label>
+        <input asp-for="UserId" class="form-control-sm" />
+    </div>
+
+    <h3>Items</h3>
+
+    @for (int i = 0; i < Model.LineItems.Count; i++)
+    {
+        <div style="margin-bottom: 15px; border: 1px solid #ccc; padding: 10px;">
+            <div class="form-group row">
+                <label>Item</label>
+                <select asp-for="LineItems[i].ItemId" asp-items="Model.Items">
+                    <option value="">Select an item</option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="LineItems[i].Quantity"></label>
+                <input asp-for="LineItems[i].Quantity" class="form-control-sm" />
+            </div>
+        </div>
+    }
+
+    <button class="btn btn-primary" type="submit">Save Sale</button>
+    <a class="btn btn-secondary" asp-controller="Sale" asp-action="ViewAll">Cancel</a>
+</form>
