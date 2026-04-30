@@ -20,5 +20,18 @@ namespace musicReporting.Models
         public DbSet<StoreInventory> Inventories { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SaleLineItem> SaleLineItems { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Sale>()
+                .HasMany(s => s.LineItems)
+                .WithOne(li => li.Sale)
+                .HasForeignKey(li => li.SaleId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
+
+    }
 }

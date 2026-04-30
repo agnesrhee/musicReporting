@@ -20,6 +20,7 @@
         <thead>
             <tr>
                 <th>Store name</th>
+                <th> Role</th>
                 <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -33,6 +34,7 @@
             {
                 <tr>
                     <td>@user.Store?.StoreName</td>
+                    <td>@user.Role?.Description</td>
                     <td>@user.FirstName @user.LastName</td>
                     <td>@user.UserName</td>
                     <td>@user.Email</td>

@@ -9,6 +9,7 @@ namespace musicReporting.ViewModels
         public User? User { get; set; }
         public IEnumerable<User>? Users { get; set; }
         public List<SelectListItem>? Stores { get; set; }
+        public List<SelectListItem>? Roles { get; set; }
 
     }
 }

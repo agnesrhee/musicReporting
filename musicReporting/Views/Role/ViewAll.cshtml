@@ -1,0 +1,56 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model RoleViewModel
+
+@{
+    ViewBag.Title = "View All Roles";
+}
+
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <a class="btn btn-outline-primary btn-sm" asp-controller="Role" asp-action="Add">Add new </a>
+
+        
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ((Model.Roles != null && Model.Roles.Any()))
+            {
+                foreach (var role in Model.Roles)
+                {
+                    <tr>
+                        <td>@role.Code</td>
+                        <td>@role.Description</td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-controller="Role" asp-action="Edit" asp-route-id="@role.Id"> Edit Role</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-controller="Role" asp-action="Delete" asp-route-id="@role.Id"> Delete Role</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+
+            else
+            {
+                <tr>
+                    <td colspan="5">No Roles!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+             
+</body>
+</html>

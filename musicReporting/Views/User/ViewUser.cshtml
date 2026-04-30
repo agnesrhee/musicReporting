@@ -8,6 +8,11 @@
 
 <h1>View User</h1>
 <input type="hidden" asp-for="User.Id" />
+<label asp-for="User.Store.StoreName"></label>
+<input class="form-control-sm" asp-for="User.Store.StoreName" disabled />
+
+<label asp-for="User.Role.Description"></label>
+<input class="form-control-sm" asp-for="User.Role.Description" disabled />
 
 <label asp-for="User.UserName"></label>
 <input class="form-control-sm" asp-for="User.UserName" disabled />

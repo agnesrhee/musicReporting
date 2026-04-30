@@ -16,6 +16,11 @@ namespace musicReporting.Models.Entities
 
         public Store? Store { get; set; }
 
+        [DisplayName("RoleId")]
+        public int? RoleId { get; set; }
+
+        public Role? Role { get; set; }
+
         [DisplayName("UserId")]
         public string UserId { get; set; } = string.Empty;
 

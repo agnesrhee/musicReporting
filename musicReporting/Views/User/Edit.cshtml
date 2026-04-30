@@ -11,6 +11,22 @@
 <input type="hidden" asp-for="User.Id" />
 <input type="hidden" asp-for="User.UserId" />
 
+    <div class="form-group row">
+        <label asp-for="Stores" class="col col-form-label"></label>
+        <select asp-for="User.StoreId" asp-items="Model.Stores">
+            <option value="">Select a store</option>
+            
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Roles" class="col col-form-label"></label>
+        <select asp-for="User.RoleId" asp-items="Model.Roles">
+            <option value="">Select a role</option>
+            
+        </select>
+    </div>
+
 <label asp-for="User.UserName"></label>
 <input class="form-control-sm" asp-for="User.UserName"/>
 

@@ -1,0 +1,29 @@
+﻿@using musicReporting.Models.Interfaces
+@using musicReporting.ViewModels
+@model RoleViewModel
+
+@{
+    ViewBag.Title = "Edit Role";
+}
+
+<h1>Edit Role</h1>
+<form asp-controller="Role" asp-action="Edit" method="post">
+    <div class="form-group row">
+        <label asp-for="Role.Code" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Role.Code" />
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Role.Description" class="col-sm-2 col-form-label"></label>
+        <input class="form-control-sm" asp-for="Role.Description" />
+
+    </div>
+
+    <input type="hidden" asp-for="Role.Id" />
+    <input type="hidden" asp-for="Role.Code" />
+    <input type="hidden" asp-for="Role.Description" />
+
+
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn btn-secondary" asp-controller="Role" asp-action="ViewAll">Cancel</a>
+</form>

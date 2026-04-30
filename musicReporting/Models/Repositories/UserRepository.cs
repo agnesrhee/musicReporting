@@ -17,12 +17,16 @@ namespace musicReporting.Models.Repositories
         {
             return _db.Users
             .Include(u => u.Store)
+            .Include(r => r.Role)
             .ToList();
         }
 
         public User? Get(int id)
         {
-            return _db.Users.Find(id);
+            return _db.Users
+            .Include(u => u.Store)
+            .Include(u => u.Role)
+            .FirstOrDefault(u => u.Id == id);
         }
 
         public User? GetByName(string? firstName, string? lastName)
@@ -56,6 +60,7 @@ namespace musicReporting.Models.Repositories
             }
 
             existingUser.StoreId = user.StoreId;
+            existingUser.RoleId = user.RoleId;
             existingUser.UserId = user.UserId;
             existingUser.UserName = user.UserName;
             existingUser.Email = user.Email;
