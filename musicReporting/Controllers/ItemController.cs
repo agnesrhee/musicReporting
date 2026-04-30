@@ -51,6 +51,11 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(ItemViewModel model)
         {
+            if (_itemRepository.GetBySKU(model.Item?.SKU) != null)
+            {
+                ModelState.AddModelError("Item.SKU", "An item with this SKU already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 // Map CategoryViewModel to Category entity and add to repository
@@ -68,6 +73,19 @@ namespace musicReporting.Controllers
                 _itemRepository.Add(item);
                 return RedirectToAction("ViewAll");
             }
+
+            model.Categories = _categoryRepository.GetAll().Select(c => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToList();
+
+            model.Brands = _brandRepository.GetAll().Select(b => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Value = b.Id.ToString(),
+                Text = b.Name
+            }).ToList();
+
             return View(model);
         }
 
@@ -93,6 +111,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(ItemViewModel model)
         {
+            if (_itemRepository.GetBySKU(model.Item?.SKU) != null && _itemRepository.GetBySKU(model.Item?.SKU)?.Id != model.Item?.Id)
+            {
+                ModelState.AddModelError("Item.SKU", "An item with this SKU already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map ItemViewModel to Item entity and update in repository
@@ -111,6 +133,19 @@ namespace musicReporting.Controllers
                 _itemRepository.Update(item);
                 return RedirectToAction("ViewAll");
             }
+
+            model.Categories = _categoryRepository.GetAll().Select(c => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToList();
+
+            model.Brands = _brandRepository.GetAll().Select(b => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem
+            {
+                Value = b.Id.ToString(),
+                Text = b.Name
+            }).ToList();
+
             return View(model);
         }
 

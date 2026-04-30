@@ -8,6 +8,7 @@ namespace musicReporting.Models.Interfaces
 
         User? Get(int id);
         User? GetByName (string? firstName, string? lastName);
+        User? GetByUserName (string? userName);
         User? GetByEmailAddress (string? emailAddress);
         User? GetByUserId (string? userId);
         IEnumerable<User> GetAll();

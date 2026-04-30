@@ -14,7 +14,7 @@ namespace musicReporting.Controllers
         private readonly ISaleLineItemRepository _saleLineItemRepository;
         private readonly IStoreInventoryRepository _storeInventoryRepository;
 
-        public SaleController(IItemRepository itemRepository, IStoreRepository storeRepository, ISaleRepository saleRepository, 
+        public SaleController(IItemRepository itemRepository, IStoreRepository storeRepository, ISaleRepository saleRepository,
             ISaleLineItemRepository saleLineItemRepository, IStoreInventoryRepository storeInventoryRepository)
         {
             _itemRepository = itemRepository;
@@ -132,12 +132,12 @@ namespace musicReporting.Controllers
 
                 if (inventory == null)
                 {
-                    return Content("This item is not stocked at the selected store.");
+                    ModelState.AddModelError("Name", "Inventory not found.");
                 }
 
                 if (inventory.QuantityOnHand < line.Quantity)
                 {
-                    return Content($"Not enough stock for item {item.ItemName}. Available: {inventory.QuantityOnHand}");
+                    ModelState.AddModelError("Name", $"Not enough stock for item {item.ItemName}. Available: {inventory.QuantityOnHand}");
                 }
 
                 if (inventory != null)
@@ -146,8 +146,22 @@ namespace musicReporting.Controllers
                     _storeInventoryRepository.Update(inventory);
                 }
             }
+            model.Stores = _storeRepository.GetAll()
+            .Select(s => new SelectListItem
+            {
+                Value = s.Id.ToString(),
+                Text = s.StoreName
+            }).ToList();
 
-            return Content($"Sale saved with Id = {sale.Id}");
+            model.Items = _itemRepository.GetAll()
+                .Select(i => new SelectListItem
+                {
+                    Value = i.Id.ToString(),
+                    Text = i.ItemName
+                }).ToList();
+
+            return View(model);
+
         }
 
         [HttpGet]

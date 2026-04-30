@@ -16,6 +16,11 @@ namespace musicReporting.Models.Repositories
         {
             return _db.Roles.Find(id);
         }
+
+        public Role? GetByCode(string code)
+        {
+            return _db.Roles.FirstOrDefault(r => r.Code == code);
+        }
         public IEnumerable<Role> GetAll()
         {
             return _db.Roles.ToList();

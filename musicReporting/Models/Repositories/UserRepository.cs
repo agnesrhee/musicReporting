@@ -39,6 +39,10 @@ namespace musicReporting.Models.Repositories
             return _db.Users.FirstOrDefault(u => u.UserId == id);
         }
 
+        public User? GetByUserName(string ?userName)
+        {
+            return _db.Users.FirstOrDefault(u => u.UserName == userName);
+        }
         public User? GetByEmailAddress(string? emailAddress)
         {
             return _db.Users.FirstOrDefault(u => u.Email == emailAddress);

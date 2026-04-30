@@ -32,6 +32,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(StoreViewModel model)
         {
+            if (_storeRepository.GetAll().Any(s => s.StoreName == model.Store?.StoreName))
+            {
+                ModelState.AddModelError("Store.StoreName", "A store with this name already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map StoreViewModel to Store entity and add to repository
@@ -63,6 +67,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(StoreViewModel model)
         {
+            if (_storeRepository.GetAll().Any(s => s.StoreName == model.Store?.StoreName && s.Id != model.Store?.Id))
+            {
+                ModelState.AddModelError("Store.StoreName", "A store with this name already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map StoreViewModel to Store entity and update in repository

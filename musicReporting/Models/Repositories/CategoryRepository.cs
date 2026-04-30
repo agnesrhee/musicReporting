@@ -16,6 +16,12 @@ namespace musicReporting.Models.Repositories
         {
             return _db.Categories.Find(id);
         }
+
+        public Category? GetByName(string name)
+        {
+            return _db.Categories.FirstOrDefault(c => c.Name == name);
+        }
+
         public IEnumerable<Category> GetAll()
         {
             return _db.Categories.ToList();

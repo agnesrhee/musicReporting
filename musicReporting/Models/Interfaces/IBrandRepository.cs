@@ -5,6 +5,7 @@ namespace musicReporting.Models.Interfaces
     public interface IBrandRepository
     {
         Brand? Get(int id);
+        Brand? GetByName(string name);
         IEnumerable<Brand> GetAll();
         Brand Add(Brand brand);
         Brand Update(Brand brand);

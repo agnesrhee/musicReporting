@@ -18,6 +18,12 @@ namespace musicReporting.Models.Repositories
             return _db.Items.Find(id);
 
         }
+
+        public Item? GetBySKU(string sku)
+        {
+            return _db.Items.FirstOrDefault(i => i.SKU == sku);
+        }
+
         public IEnumerable<Item> GetAll()
         {
             return _db.Items.Include(i => i.Category).ToList();

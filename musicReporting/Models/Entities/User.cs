@@ -27,6 +27,9 @@ namespace musicReporting.Models.Entities
         [DisplayName("UserName")]
         public string UserName { get; set; } = string.Empty;
 
+        [DisplayName("IpAddress")]
+        public string IpAddress { get; set; } = string.Empty;
+
         [DisplayName("Email")]
         public string Email { get; set; } = string.Empty;
 

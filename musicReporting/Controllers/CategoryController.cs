@@ -32,6 +32,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(CategoryViewModel model)
         {
+            if (_categoryRepository.GetByName(model.Category?.Name ?? string.Empty) != null)
+            {
+                ModelState.AddModelError("Category.Name", "A category with this name already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map CategoryViewModel to Category entity and add to repository
@@ -59,6 +63,11 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(CategoryViewModel model)
         {
+            if (_categoryRepository.GetByName(model.Category?.Name ?? string.Empty) != null &&
+                _categoryRepository.GetByName(model.Category?.Name ?? string.Empty)?.Id != model.Category?.Id) { 
+                ModelState.AddModelError("Category.Name", "A category with this name already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 // Map CategoryViewModel to Category entity and update in repository

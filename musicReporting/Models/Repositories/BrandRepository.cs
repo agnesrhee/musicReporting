@@ -16,6 +16,12 @@ namespace musicReporting.Models.Repositories
         {
             return _db.Brands.Find(id);
         }
+
+        public Brand? GetByName(string name)
+        {
+            return _db.Brands.FirstOrDefault(b => b.Name == name);
+        }
+
         public IEnumerable<Brand> GetAll()
         {
             return _db.Brands.ToList();

@@ -32,6 +32,15 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(RoleViewModel model)
         {
+            if (model.Role == null)
+            {
+                ModelState.AddModelError("Role", "Role information is required.");
+                return View(model);
+            }
+            if (_roleRepository.GetByCode(model.Role?.Code ?? string.Empty) != null)
+            {
+                ModelState.AddModelError("Role.Code", "A role with this code already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map CategoryViewModel to Category entity and add to repository
@@ -59,6 +68,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(RoleViewModel model)
         {
+            if (_roleRepository.GetByCode(model.Role?.Code ?? string.Empty) != null)
+            {
+                ModelState.AddModelError("Role.Code", "A role with this code already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map CategoryViewModel to Category entity and update in repository

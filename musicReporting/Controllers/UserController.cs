@@ -57,13 +57,25 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(UserViewModel model)
         {
+            if (_userRepository.GetByUserName(model.User?.UserName) != null)
+            {
+                ModelState.AddModelError("User.UserName", "Username already exists.");
+            }
+
+            if (_userRepository.GetByEmailAddress(model.User?.Email) != null)
+            {
+                ModelState.AddModelError("User.Email", "Email already exists.");
+            }
+
             if (ModelState.IsValid)
             {
+
                 // Map UserViewModel to User entity and add to repository
                 var user = new User {
                     UserId = DateTime.Now.Ticks.ToString(),
                     StoreId = model.User?.StoreId,
                     RoleId = model.User?.RoleId,
+                    IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString(),
                     FirstName = model.User?.FirstName,
                     LastName = model.User?.LastName,
                     UserName = model.User?.UserName,
@@ -72,6 +84,18 @@ namespace musicReporting.Controllers
                 _userRepository.Add(user);
                 return RedirectToAction("ViewAll");
             }
+
+            var stores = _storeRepository.GetAll();
+            model.Stores = stores == null
+                ? new List<SelectListItem>()
+                : stores.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.StoreName }).ToList();
+
+            var roles = _roleRepository.GetAll();
+            model.Roles = roles == null
+                ? new List<SelectListItem>()
+                : roles.Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Description }).ToList();
+
+
             return View(model);
         }
 
@@ -97,6 +121,16 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(UserViewModel model)
         {
+            if (_userRepository.GetByUserName(model.User?.UserName) != null)
+            {
+                ModelState.AddModelError("User.UserName", "Username already exists.");
+            }
+
+            if (_userRepository.GetByEmailAddress(model.User?.Email) != null)
+            {
+                ModelState.AddModelError("User.Email", "Email already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 // Map UserViewModel to User entity and update in repository
@@ -113,6 +147,18 @@ namespace musicReporting.Controllers
                 _userRepository.Update(user);
                 return RedirectToAction("ViewAll");
             }
+
+            var stores = _storeRepository.GetAll();
+            model.Stores = stores == null
+                ? new List<SelectListItem>()
+                : stores.Select(s => new SelectListItem { Value = s.Id.ToString(), Text = s.StoreName }).ToList();
+
+            var roles = _roleRepository.GetAll();
+            model.Roles = roles == null
+                ? new List<SelectListItem>()
+                : roles.Select(r => new SelectListItem { Value = r.Id.ToString(), Text = r.Description }).ToList();
+
+
             return View(model);
         }
 

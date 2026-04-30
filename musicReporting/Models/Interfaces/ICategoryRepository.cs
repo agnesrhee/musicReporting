@@ -5,6 +5,7 @@ namespace musicReporting.Models.Interfaces
     public interface ICategoryRepository
     {
         Category? Get(int id);
+        Category? GetByName(string name);
         IEnumerable<Category> GetAll();
         Category Add(Category category);
         Category Update(Category category);

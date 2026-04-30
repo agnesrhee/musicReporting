@@ -32,6 +32,11 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(BrandViewModel model)
         {
+            if (_brandRepository.GetByName(model.Brand?.Name) != null)
+            {
+                ModelState.AddModelError("Brand.Name", "A brand with this name already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 // Map BrandViewModel to Brand entity and add to repository
@@ -59,6 +64,10 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(BrandViewModel model)
         {
+            if (_brandRepository.GetByName(model.Brand?.Name) != null && _brandRepository.GetByName(model.Brand.Name).Id != model.Brand.Id)
+            {
+                ModelState.AddModelError("Brand.Name", "A brand with this name already exists.");
+            }
             if (ModelState.IsValid)
             {
                 // Map BrandViewModel to Brand entity and update in repository

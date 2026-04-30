@@ -8,6 +8,7 @@
 
 <h1>Edit Store</h1>
 <form asp-controller="Store" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group row">
         <label asp-for="Store.StoreName" class="col-sm-2 col-form-label"></label>
         <input class="form-control-sm" asp-for="Store.StoreName" />
