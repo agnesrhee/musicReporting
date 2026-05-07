@@ -21,6 +21,7 @@ namespace musicReporting.Models.Repositories
         {
             return _db.Inventories.FirstOrDefault(i => i.ItemId == itemId);
         }
+
         public StoreInventory? GetByStoreId(int storeId)
         {
             return _db.Inventories.FirstOrDefault(si => si.StoreId == storeId);

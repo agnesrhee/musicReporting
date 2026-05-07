@@ -44,7 +44,20 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Add(StoreInventoryViewModel model)
         {
-            //if (_storeInventoryRepository.GetByStoreAndItem())
+            var existingInventory = _storeInventoryRepository.GetByStoreAndItem(
+                model.StoreInventory.StoreId,
+                model.StoreInventory.ItemId
+            );
+
+            if (existingInventory != null)
+            {
+                existingInventory.QuantityOnHand += model.StoreInventory.QuantityOnHand;
+
+                _storeInventoryRepository.Update(existingInventory);
+                TempData["SuccessMessage"] = "This item already existed, so we added the quantity to the existing inventory.";
+                return RedirectToAction("ViewAll");
+
+            }
             if (ModelState.IsValid)
             {
                 // Map StoreInventoryViewModel to StoreInventory entity and add to repository

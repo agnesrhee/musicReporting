@@ -13,13 +13,19 @@
 
 <body>
     <a class="btn btn-outline-primary btn-sm" asp-controller="StoreInventory" asp-action="Add">Add Store Inventory</a>
-
-        
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
     
     <table class="table">
         <thead>
             <tr>
                 <th>Store name</th>
+                <th>SKU</th>
                 <th>Brand</th>
                 <th>Item</th>
                 <th>Quantity</th>
@@ -33,7 +39,8 @@
                 {
                     <tr>
                         <td>@storeInventory.Store?.StoreName</td>
-                        <td>@storeInventory.Item.Brand.Name</td>
+                        <td>@storeInventory.Item.SKU</td>
+                        <td>@storeInventory.Item?.Brand?.Name</td>
                         <td>@storeInventory.Item?.ItemName</td>
                         <td>@storeInventory.QuantityOnHand</td>
                         <td>
