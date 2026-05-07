@@ -8,22 +8,35 @@
 
 <h1>View User</h1>
 <input type="hidden" asp-for="User.Id" />
+
+<div class="form-group row">
 <label asp-for="User.Store.StoreName"></label>
 <input class="form-control-sm" asp-for="User.Store.StoreName" disabled />
+</div>
 
+<div class="form-group row">
 <label asp-for="User.Role.Description"></label>
 <input class="form-control-sm" asp-for="User.Role.Description" disabled />
+</div>
 
+<div class="form-group row">
 <label asp-for="User.UserName"></label>
 <input class="form-control-sm" asp-for="User.UserName" disabled />
+</div>
 
+<div class="form-group row">
 <label asp-for="User.FirstName"></label>
 <input class="form-control-sm" asp-for="User.FirstName" disabled />
+</div>
 
+<div class="form-group row">
 <label asp-for="User.LastName"></label>
 <input class="form-control-sm" asp-for="User.LastName" disabled />
+</div>
 
+<div class="form-group row">
 <label asp-for="User.Email"></label>
 <input class="form-control-sm" asp-for="User.Email" disabled />
+</div>
 
 <a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Return</a>

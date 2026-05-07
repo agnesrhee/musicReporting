@@ -121,12 +121,16 @@ namespace musicReporting.Controllers
         [HttpPost]
         public IActionResult Edit(UserViewModel model)
         {
-            if (_userRepository.GetByUserName(model.User?.UserName) != null)
+            var userId = model.User?.Id ?? 0;
+
+            var existingUsernameUser = _userRepository.GetByUserName(model.User?.UserName);
+            if (existingUsernameUser != null && existingUsernameUser.Id != userId)
             {
                 ModelState.AddModelError("User.UserName", "Username already exists.");
             }
 
-            if (_userRepository.GetByEmailAddress(model.User?.Email) != null)
+            var existingEmailUser = _userRepository.GetByEmailAddress(model.User?.Email);
+            if (existingEmailUser != null && existingEmailUser.Id != userId)
             {
                 ModelState.AddModelError("User.Email", "Email already exists.");
             }

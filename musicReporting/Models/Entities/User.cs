@@ -24,7 +24,7 @@ namespace musicReporting.Models.Entities
         [DisplayName("UserId")]
         public string UserId { get; set; } = string.Empty;
 
-        [DisplayName("UserName")]
+        [DisplayName("Username")]
         public string UserName { get; set; } = string.Empty;
 
         [DisplayName("IpAddress")]
@@ -33,10 +33,10 @@ namespace musicReporting.Models.Entities
         [DisplayName("Email")]
         public string Email { get; set; } = string.Empty;
 
-        [DisplayName("FirstName")]
+        [DisplayName("First Name")]
         public string FirstName { get; set; } = string.Empty;
 
-        [DisplayName("LastName")]
+        [DisplayName("Last Name")]
         public string LastName { get; set; } = string.Empty;
     }
 }

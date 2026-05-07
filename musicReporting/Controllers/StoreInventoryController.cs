@@ -37,13 +37,14 @@ namespace musicReporting.Controllers
             var items = _itemRepository.GetAll();
             model.Items = items == null
                 ? new List<SelectListItem>()
-                : items.Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.ItemName }).ToList();
+                : items.Select(i => new SelectListItem { Value = i.Id.ToString(), Text = i.SKU + " | " + i.Brand?.Name + " | " + i.ItemName }).ToList();
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Add(StoreInventoryViewModel model)
         {
+            //if (_storeInventoryRepository.GetByStoreAndItem())
             if (ModelState.IsValid)
             {
                 // Map StoreInventoryViewModel to StoreInventory entity and add to repository

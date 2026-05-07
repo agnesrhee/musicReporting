@@ -27,7 +27,7 @@ namespace musicReporting.Models.Repositories
         }
         public IEnumerable<StoreInventory> GetAll()
         {
-            return _db.Inventories.Include(si => si.Store).Include(si => si.Item).ToList();
+            return _db.Inventories.Include(si => si.Store).Include(si => si.Item).ThenInclude(i => i.Brand).ToList();
         }
         public StoreInventory Add(StoreInventory storeInventory)
         {

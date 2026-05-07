@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using musicReporting.Models.Entities;
 using musicReporting.Models.Interfaces;
 using musicReporting.Models.Repositories;
 using musicReporting.ViewModels;
+using System.Data.Common;
 
 namespace musicReporting.Controllers
 {
@@ -36,6 +38,8 @@ namespace musicReporting.Controllers
             {
                 ModelState.AddModelError("Store.StoreName", "A store with this name already exists.");
             }
+
+
             if (ModelState.IsValid)
             {
                 // Map StoreViewModel to Store entity and add to repository
@@ -49,10 +53,23 @@ namespace musicReporting.Controllers
                     State = model.Store?.State,
                     ZipCode = model.Store?.ZipCode
                 };
-                _storeRepository.Add(store);
-                return RedirectToAction("ViewAll");
+
+                try
+                {
+                    _storeRepository.Add(store);
+                    return RedirectToAction("ViewAll");
+                }
+
+                catch (DbUpdateException)
+                {
+
+                    ModelState.AddModelError("", "A store with this name, phone, or address already exists.");
+                    return View(model);
+
+                }
             }
-            return View(model);
+                return View(model);
+      
         }
 
         [HttpGet]
@@ -71,6 +88,8 @@ namespace musicReporting.Controllers
             {
                 ModelState.AddModelError("Store.StoreName", "A store with this name already exists.");
             }
+
+            
             if (ModelState.IsValid)
             {
                 // Map StoreViewModel to Store entity and update in repository

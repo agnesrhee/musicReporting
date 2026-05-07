@@ -26,7 +26,7 @@ namespace musicReporting.Models.Repositories
 
         public IEnumerable<Item> GetAll()
         {
-            return _db.Items.Include(i => i.Category).ToList();
+            return _db.Items.Include(i => i.Category).Include(i => i.Brand).ToList();
         }
         public Item Add(Item item)
         {

@@ -28,17 +28,25 @@
         </select>
     </div>
 
+    <div class="form-group row">
 <label asp-for="User.UserName"></label>
 <input class="form-control-sm" asp-for="User.UserName"/>
+</div>
 
+    <div class="form-group row">
 <label asp-for="User.FirstName"></label>
 <input class="form-control-sm" asp-for="User.FirstName"/>
+</div>
 
+    <div class="form-group row">
 <label asp-for="User.LastName"></label>
 <input class="form-control-sm" asp-for="User.LastName"/>
+</div>
 
+    <div class="form-group row">
 <label asp-for="User.Email"></label>
 <input class="form-control-sm" asp-for="User.Email"  />
+</div>
 
 <button class="btn btn-outline-primary btn-sm" type="submit">Update</button> 
 <a class="btn btn-outline-danger" asp-asp-controller="User" asp-action="ViewAll">Cancel</a>

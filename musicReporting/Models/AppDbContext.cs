@@ -31,6 +31,25 @@ namespace musicReporting.Models
                 .WithOne(li => li.Sale)
                 .HasForeignKey(li => li.SaleId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Store>()
+                .HasIndex(s => s.StoreName)
+                .IsUnique();
+
+            modelBuilder.Entity<Store>()
+                .HasIndex(s => s.PhoneNumber)
+                .IsUnique();
+
+            modelBuilder.Entity<Store>()
+                .HasIndex(s => new
+                {
+                    s.AddressLine1,
+                    s.AddressLine2,
+                    s.City,
+                    s.State,
+                    s.ZipCode
+                })
+                .IsUnique();
         }
 
     }
