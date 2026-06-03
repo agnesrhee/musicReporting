@@ -92,6 +92,7 @@ namespace musicReporting.Controllers
 
         [HttpPost]
         public IActionResult Edit(StoreInventoryViewModel model)
+        
         {
             if (ModelState.IsValid)
             {
